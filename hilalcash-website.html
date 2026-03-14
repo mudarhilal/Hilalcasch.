@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>هلال كاش — منصة الخدمات المالية الرقمية السورية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#1a6b3a;
+  --green-light:#2d9e58;
+  --green-glow:#00ff88;
+  --gold:#c9a84c;
+  --gold-light:#f0cb6e;
+  --bg:#060e1a;
+  --bg2:#0a1628;
+  --bg3:#0f1e35;
+  --card:#111f35;
+  --card2:#162540;
+  --text:#e8f4ff;
+  --text2:#8baac8;
+  --text3:#4a6a8a;
+  --red:#ff4466;
+  --blue:#4a9eff;
+  --cyan:#00d4a0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;
+  background:rgba(6,14,26,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,255,136,.08);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  box-shadow:0 0 20px rgba(0,255,136,.25);
+}
+.nav-logo-text{font-family:'Cairo',sans-serif;font-size:1.15rem;font-weight:900;color:var(--gold-light)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  color:white;border:none;border-radius:10px;
+  padding:9px 22px;font-family:'Tajawal',sans-serif;
+  font-size:.9rem;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 20px rgba(26,107,58,.4);
+  transition:transform .2s,box-shadow .2s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(26,107,58,.6)}
+.nav-mobile-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:100px 5% 60px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%,rgba(26,107,58,.18) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%,rgba(201,168,76,.1) 0%,transparent 50%),
+    radial-gradient(ellipse 40% 30% at 60% 80%,rgba(0,212,160,.08) 0%,transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,255,136,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse at center,black 20%,transparent 80%);
+}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);
+  border-radius:30px;padding:6px 16px;
+  font-size:.78rem;color:var(--cyan);font-weight:600;
+  margin-bottom:28px;
+  animation:fadeInDown .8s ease both;
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+h1.hero-title{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:10px;
+  animation:fadeInDown .8s .1s ease both;
+}
+.hero-title span{
+  background:linear-gradient(135deg,var(--gold-light),var(--green-glow));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--text2);line-height:1.8;
+  margin-bottom:36px;font-weight:400;
+  animation:fadeInDown .8s .2s ease both;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeInDown .8s .3s ease both}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  color:white;border:none;border-radius:14px;
+  padding:14px 28px;font-family:'Tajawal',sans-serif;
+  font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;
+  box-shadow:0 8px 30px rgba(26,107,58,.5);
+  transition:all .25s;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(26,107,58,.7)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.05);color:var(--text);
+  border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  padding:14px 28px;font-family:'Tajawal',sans-serif;
+  font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:all .25s;
+}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25)}
+.hero-stats{
+  display:flex;gap:32px;margin-top:48px;
+  animation:fadeInDown .8s .4s ease both;
+}
+.hero-stat-num{font-family:'Cairo',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold-light)}
+.hero-stat-label{font-size:.72rem;color:var(--text3);margin-top:2px}
+.hero-stat-divider{width:1px;background:rgba(255,255,255,.08)}
+
+/* Phone Mockup */
+.hero-visual{
+  position:absolute;left:5%;top:50%;transform:translateY(-50%);
+  z-index:2;
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-52%) translateX(-10px)}}
+.phone-mockup{
+  width:240px;
+  background:linear-gradient(160deg,#1a2e4a,#0d1e30);
+  border-radius:40px;
+  border:2px solid rgba(255,255,255,.12);
+  padding:12px;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,255,255,.05),
+    inset 0 1px 0 rgba(255,255,255,.1);
+}
+.phone-screen{
+  background:var(--bg2);border-radius:30px;
+  overflow:hidden;aspect-ratio:9/19;
+  position:relative;
+}
+.phone-status{height:28px;background:#0a1628;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:.6rem;color:var(--text3)}
+.phone-content{padding:12px}
+.phone-balance-card{
+  background:linear-gradient(135deg,#1a6b3a,#2d9e58);
+  border-radius:14px;padding:14px;margin-bottom:10px;
+}
+.phone-bal-label{font-size:.55rem;color:rgba(255,255,255,.7);margin-bottom:4px}
+.phone-bal-num{font-family:'Cairo',sans-serif;font-size:1.4rem;font-weight:900;color:white}
+.phone-bal-usd{font-size:.5rem;color:rgba(255,255,255,.5);margin-top:2px}
+.phone-btns{display:flex;gap:6px;margin-top:8px}
+.phone-btn{flex:1;background:rgba(255,255,255,.15);border-radius:8px;padding:6px 4px;font-size:.45rem;color:white;text-align:center}
+.phone-services{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.phone-svc{background:#162540;border-radius:10px;padding:8px;text-align:center}
+.phone-svc-icon{font-size:1rem;margin-bottom:3px}
+.phone-svc-label{font-size:.42rem;color:var(--text3)}
+.phone-news-ticker{
+  background:#0a1628;border-radius:8px;padding:6px 8px;
+  font-size:.42rem;color:var(--text3);display:flex;align-items:center;gap:4px;
+}
+.phone-news-badge{background:var(--red);border-radius:3px;padding:1px 4px;font-size:.38rem;color:white;font-weight:700}
+
+/* ── SECTIONS ── */
+section{padding:90px 5%}
+.section-label{
+  display:inline-block;
+  font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--cyan);text-transform:uppercase;
+  margin-bottom:14px;
+}
+h2.section-title{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:900;margin-bottom:14px;
+}
+h2.section-title span{color:var(--gold-light)}
+.section-desc{font-size:1rem;color:var(--text2);max-width:560px;line-height:1.8}
+
+/* ── FEATURES ── */
+#features{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%)}
+.features-header{text-align:center;margin-bottom:60px}
+.features-header .section-desc{margin:0 auto}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+.feature-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:28px;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent,var(--cyan)),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.feature-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.feature-card:hover::before{opacity:1}
+.feature-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:18px;
+}
+.feature-title{font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:10px}
+.feature-desc{font-size:.88rem;color:var(--text2);line-height:1.8}
+.feature-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.feature-tag{
+  font-size:.65rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;
+  background:rgba(255,255,255,.06);color:var(--text3);
+}
+
+/* ── HOW IT WORKS ── */
+#how{background:var(--bg2)}
+.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{
+  display:flex;gap:20px;padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition:background .2s;cursor:default;
+}
+.step:last-child{border-bottom:none}
+.step-num{
+  width:44px;height:44px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cairo',sans-serif;font-size:1rem;font-weight:900;color:white;
+  box-shadow:0 6px 20px rgba(26,107,58,.4);
+}
+.step-title{font-family:'Cairo',sans-serif;font-size:1rem;font-weight:800;margin-bottom:6px}
+.step-desc{font-size:.85rem;color:var(--text2);line-height:1.7}
+.how-visual{
+  background:var(--card);border-radius:24px;padding:30px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.how-visual-title{font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:800;margin-bottom:20px;color:var(--gold-light)}
+.how-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px;background:var(--card2);border-radius:12px;margin-bottom:10px;
+}
+.how-item-icon{font-size:1.4rem}
+.how-item-text{font-size:.82rem;color:var(--text2);line-height:1.5}
+.how-item-text strong{color:var(--text);font-weight:700}
+
+/* ── SERVICES SHOWCASE ── */
+#services{background:var(--bg)}
+.services-header{margin-bottom:50px}
+.services-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.svc-tab{
+  padding:8px 18px;border-radius:30px;font-family:'Tajawal',sans-serif;
+  font-size:.82rem;font-weight:600;cursor:pointer;border:none;
+  background:rgba(255,255,255,.06);color:var(--text2);transition:all .2s;
+}
+.svc-tab.active,.svc-tab:hover{background:var(--green);color:white}
+.services-showcase{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.svc-card{
+  background:var(--card);border-radius:18px;padding:22px;
+  border:1px solid rgba(255,255,255,.05);
+  transition:all .25s;cursor:pointer;
+}
+.svc-card:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 40px rgba(26,107,58,.25)}
+.svc-card-icon{font-size:2rem;margin-bottom:12px}
+.svc-card-title{font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;margin-bottom:6px}
+.svc-card-desc{font-size:.78rem;color:var(--text2);line-height:1.6}
+.svc-card-badge{
+  display:inline-block;margin-top:10px;
+  font-size:.62rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;
+}
+
+/* ── SECURITY ── */
+#security{
+  background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);
+}
+.security-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.security-points{display:flex;flex-direction:column;gap:18px;margin-top:30px}
+.sec-point{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:18px;background:var(--card);border-radius:14px;
+  border:1px solid rgba(255,255,255,.05);
+  transition:border-color .2s;
+}
+.sec-point:hover{border-color:rgba(0,212,160,.3)}
+.sec-point-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.sec-point-title{font-weight:700;margin-bottom:4px;font-size:.9rem}
+.sec-point-desc{font-size:.8rem;color:var(--text2);line-height:1.6}
+.security-visual{
+  background:linear-gradient(135deg,var(--card),var(--card2));
+  border-radius:24px;padding:32px;
+  border:1px solid rgba(0,212,160,.15);
+  box-shadow:0 0 60px rgba(0,212,160,.08);
+  text-align:center;
+}
+.sec-shield{font-size:5rem;margin-bottom:20px;display:block}
+.sec-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.sec-stat{background:var(--bg2);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.05)}
+.sec-stat-num{font-family:'Cairo',sans-serif;font-size:1.6rem;font-weight:900;color:var(--cyan)}
+.sec-stat-label{font-size:.68rem;color:var(--text3);margin-top:4px}
+
+/* ── COMMISSIONS ── */
+#commissions{background:var(--bg2)}
+.comm-header{text-align:center;margin-bottom:50px}
+.comm-header .section-desc{margin:0 auto}
+.comm-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
+}
+.comm-card{
+  background:var(--card);border-radius:18px;padding:24px;
+  border:1px solid rgba(255,255,255,.05);text-align:center;
+  transition:transform .25s,box-shadow .25s;
+}
+.comm-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.comm-icon{font-size:2rem;margin-bottom:12px}
+.comm-service{font-weight:800;font-size:.9rem;margin-bottom:8px}
+.comm-rate{font-family:'Cairo',sans-serif;font-size:2rem;font-weight:900;color:var(--gold-light)}
+.comm-unit{font-size:.7rem;color:var(--text3)}
+.comm-desc{font-size:.72rem;color:var(--text2);margin-top:8px;line-height:1.5}
+
+/* ── DOWNLOAD ── */
+#download{
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(26,107,58,.2) 0%,var(--bg) 70%);
+  text-align:center;padding:100px 5%;
+}
+.download-title{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:900;margin-bottom:16px;
+}
+.download-desc{font-size:1rem;color:var(--text2);max-width:500px;margin:0 auto 40px;line-height:1.8}
+.download-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.dl-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;padding:14px 24px;text-decoration:none;color:var(--text);
+  transition:all .25s;min-width:180px;
+}
+.dl-btn:hover{background:var(--card2);border-color:rgba(255,255,255,.25);transform:translateY(-3px)}
+.dl-btn-icon{font-size:1.8rem}
+.dl-btn-text{text-align:right}
+.dl-btn-sub{font-size:.62rem;color:var(--text3)}
+.dl-btn-name{font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800}
+.qr-wrap{
+  margin-top:40px;
+  display:inline-flex;flex-direction:column;align-items:center;gap:10px;
+}
+.qr-box{
+  width:120px;height:120px;background:white;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;
+}
+.qr-label{font-size:.72rem;color:var(--text3)}
+
+/* ── FAQ ── */
+#faq{background:var(--bg)}
+.faq-layout{max-width:720px;margin:0 auto}
+.faq-header{text-align:center;margin-bottom:50px}
+.faq-item{
+  background:var(--card);border-radius:14px;margin-bottom:12px;
+  border:1px solid rgba(255,255,255,.05);overflow:hidden;
+}
+.faq-q{
+  padding:18px 22px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  font-weight:700;font-size:.92rem;
+  transition:background .2s;
+  user-select:none;
+}
+.faq-q:hover{background:rgba(255,255,255,.03)}
+.faq-q.open{color:var(--gold-light)}
+.faq-arrow{font-size:1.1rem;transition:transform .3s;flex-shrink:0;margin-right:8px}
+.faq-q.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .35s;
+  padding:0 22px;font-size:.85rem;color:var(--text2);line-height:1.9;
+}
+.faq-a.open{max-height:300px;padding:0 22px 18px}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);
+  padding:50px 5% 30px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;margin-bottom:40px;
+}
+.footer-brand-desc{font-size:.83rem;color:var(--text3);line-height:1.8;margin-top:14px;max-width:280px}
+.footer-col-title{font-family:'Cairo',sans-serif;font-weight:800;margin-bottom:16px;font-size:.9rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{color:var(--text3);text-decoration:none;font-size:.83rem;transition:color .2s}
+.footer-links a:hover{color:var(--gold-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;
+  font-size:.78rem;color:var(--text3);
+}
+.footer-flag{font-size:1.1rem}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-mobile-btn{display:block}
+  .hero-visual{display:none}
+  .how-layout,.security-layout{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:20px}
+  section{padding:60px 5%}
+}
+@media(max-width:600px){
+  .hero-stats{flex-wrap:wrap;gap:16px}
+  .footer-grid{grid-template-columns:1fr}
+  .download-btns{flex-direction:column;align-items:center}
+}
+
+/* ── GOLD GLOW TEXT ── */
+.glow-text{text-shadow:0 0 30px rgba(240,203,110,.4)}
+
+/* ── ORNAMENT ── */
+.ornament{
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,136,.06),transparent 70%);
+  position:absolute;pointer-events:none;
+}
+
+/* ── NOTICE BANNER ── */
+.notice{
+  background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);
+  border-radius:14px;padding:18px 22px;
+  display:flex;gap:14px;align-items:flex-start;
+  margin-top:30px;
+}
+.notice-icon{font-size:1.4rem;flex-shrink:0}
+.notice-text{font-size:.82rem;color:var(--text2);line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-logo" href="#hero">
+    <div class="nav-logo-icon">🌙</div>
+    <span class="nav-logo-text">هلال كاش</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">الميزات</a>
+    <a href="#services">الخدمات</a>
+    <a href="#security">الأمان</a>
+    <a href="#commissions">العمولات</a>
+    <a href="#faq">الأسئلة</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('download').scrollIntoView({behavior:'smooth'})">حمّل التطبيق</button>
+  <button class="nav-mobile-btn" onclick="this.textContent==='☰'?(this.textContent='✕',document.querySelector('.nav-links').style.cssText='display:flex;flex-direction:column;position:fixed;top:70px;right:0;left:0;background:rgba(6,14,26,.97);padding:20px 5%;gap:20px;border-bottom:1px solid rgba(255,255,255,.08);z-index:99'):(this.textContent='☰',document.querySelector('.nav-links').style.display='none')">☰</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      منصة سورية — متاحة الآن
+    </div>
+    <h1 class="hero-title">
+      هلال كاش<br>
+      <span>مستقبل المدفوعات</span><br>
+      في سوريا
+    </h1>
+    <p class="hero-sub">
+      منصة رقمية متكاملة تجمع المحفظة الإلكترونية، التحويلات، التكسي، الإيجارات، الفواتير، وأكثر من 20 خدمة — كل شيء في تطبيق واحد.
+    </p>
+    <div class="hero-btns">
+      <a href="#download" class="btn-primary">⬇ حمّل مجاناً</a>
+      <a href="#features" class="btn-secondary">🎬 شاهد كيف يعمل</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">+20</div>
+        <div class="hero-stat-label">خدمة متكاملة</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">عملات مدعومة</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">0%</div>
+        <div class="hero-stat-label">رسوم داخلية</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">🇸🇾</div>
+        <div class="hero-stat-label">صُنع بسوريا</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phone Mockup -->
+  <div class="hero-visual">
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-status">
+          <span>9:41</span><span>🔋📶</span>
+        </div>
+        <div style="background:linear-gradient(90deg,#0a1628,#0f2a18);height:22px;display:flex;align-items:center;padding:0 10px;overflow:hidden">
+          <div style="font-size:.38rem;color:rgba(255,255,255,.5);white-space:nowrap;animation:marqueePhone 8s linear infinite">⚡ عاجل: الليرة تتعافى &nbsp;&nbsp; 📈 USDT = 14,950 ل.س &nbsp;&nbsp; 🇸🇾 افتتاح ممر تجاري</div>
+        </div>
+        <div class="phone-content">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div><div style="font-size:.48rem;color:rgba(255,255,255,.5)">مرحباً،</div><div style="font-family:'Cairo',sans-serif;font-size:.7rem;font-weight:900">أحمد محمد</div></div>
+            <div style="display:flex;gap:5px">
+              <div style="width:22px;height:22px;background:rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem">📰</div>
+              <div style="width:22px;height:22px;background:rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem">🤖</div>
+              <div style="width:22px;height:22px;background:rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem">☰</div>
+            </div>
+          </div>
+          <div class="phone-balance-card">
+            <div class="phone-bal-label">إجمالي رصيدك</div>
+            <div class="phone-bal-num">248,500<span style="font-size:.6rem;opacity:.7"> ل.س</span></div>
+            <div class="phone-bal-usd">≈ $16.79</div>
+            <div class="phone-btns">
+              <div class="phone-btn">↑ إرسال</div>
+              <div class="phone-btn">↓ استلام</div>
+              <div class="phone-btn">🤝 P2P</div>
+              <div class="phone-btn">📋 فواتير</div>
+            </div>
+          </div>
+          <div class="phone-services">
+            <div class="phone-svc"><div class="phone-svc-icon">🚖</div><div class="phone-svc-label">تكسي</div></div>
+            <div class="phone-svc"><div class="phone-svc-icon">🏠</div><div class="phone-svc-label">إيجار</div></div>
+            <div class="phone-svc"><div class="phone-svc-icon">🥖</div><div class="phone-svc-label">خبز</div></div>
+            <div class="phone-svc"><div class="phone-svc-icon">🚨</div><div class="phone-svc-label">طوارئ</div></div>
+            <div class="phone-svc"><div class="phone-svc-icon">🔧</div><div class="phone-svc-label">خبرات</div></div>
+            <div class="phone-svc"><div class="phone-svc-icon">⚡</div><div class="phone-svc-label">كهرباء</div></div>
+          </div>
+          <div class="phone-news-ticker">
+            <span class="phone-news-badge">عاجل</span>
+            <span>الليرة تتعافى بعد اتفاقية دولية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section id="features">
+  <div class="features-header reveal">
+    <div class="section-label">الميزات الرئيسية</div>
+    <h2 class="section-title">كل ما تحتاجه في <span>تطبيق واحد</span></h2>
+    <p class="section-desc">هلال كاش ليس مجرد محفظة — إنه نظام بيئي كامل يخدم احتياجاتك اليومية من المدفوعات والنقل والخدمات.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal" style="--accent:#00d4a0">
+      <div class="feature-icon" style="background:rgba(0,212,160,.12)">💸</div>
+      <div class="feature-title">تحويلات فورية متعددة العملات</div>
+      <div class="feature-desc">أرسل واستقبل الأموال بالليرة السورية، الدولار، USDT، اليورو، والريال السعودي. التحويل داخل هلال كاش مجاني 100%.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">SYP</span><span class="feature-tag">USD</span><span class="feature-tag">USDT</span><span class="feature-tag">EUR</span><span class="feature-tag">فوري</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#f0cb6e">
+      <div class="feature-icon" style="background:rgba(240,203,110,.12)">🚖</div>
+      <div class="feature-title">تكسي ذكي مع حماية كاملة</div>
+      <div class="feature-desc">احجز تكسي بـ6 أنواع مركبات. نظام التحقق من السيارة قبل الركوب يحمي سلامتك. غرامة تلقائية لمن يتخطى القواعد.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">6 أنواع</span><span class="feature-tag">تحقق أمني</span><span class="feature-tag">تتبع حي</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#ff4466">
+      <div class="feature-icon" style="background:rgba(255,68,102,.12)">🛡️</div>
+      <div class="feature-title">نظام Escrow لحماية المشتري</div>
+      <div class="feature-desc">5% من قيمة أي صفقة تبقى محجوزة حتى تؤكد استلام المنتج. في حال النزاع يُرفع للمحكمة السورية.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">حجز تلقائي</span><span class="feature-tag">حماية قانونية</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#c9a84c">
+      <div class="feature-icon" style="background:rgba(201,168,76,.12)">🏠</div>
+      <div class="feature-title">إيجارات بعقود رقمية رسمية</div>
+      <div class="feature-desc">استأجر بيتاً، محلاً، صالة أفراح، فندقاً، أو سيارة بعقد رقمي موثق. تأمين السيارة محجوز في التطبيق.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">عقد رقمي</span><span class="feature-tag">فنادق</span><span class="feature-tag">تأمين سيارة</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#a78bfa">
+      <div class="feature-icon" style="background:rgba(167,139,250,.12)">🤝</div>
+      <div class="feature-title">تداول P2P للـ USDT</div>
+      <div class="feature-desc">اشترِ وبِع USDT مباشرة مع مستخدمين آخرين بأسعار السوق. بدون وسيط — شفافية كاملة.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">USDT</span><span class="feature-tag">TRC20</span><span class="feature-tag">بلا وسيط</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#4a9eff">
+      <div class="feature-icon" style="background:rgba(74,158,255,.12)">📋</div>
+      <div class="feature-title">دفع الفواتير دفعة واحدة</div>
+      <div class="feature-desc">ادفع فاتورة الكهرباء، الإنترنت (STE/MTN)، الهاتف الأرضي، وشحن المحمول — كل شيء من محفظتك مباشرة.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">كهرباء</span><span class="feature-tag">إنترنت</span><span class="feature-tag">MTN</span><span class="feature-tag">Syriatel</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#fb923c">
+      <div class="feature-icon" style="background:rgba(251,146,60,.12)">🥖</div>
+      <div class="feature-title">كوبون الخبز الرقمي</div>
+      <div class="feature-desc">باركود شخصي مرتبط بهويتك للحصول على حصتك اليومية من الأفران الحكومية — يُحارب السوق السوداء.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">باركود يومي</span><span class="feature-tag">عائلي</span><span class="feature-tag">مكافحة تلاعب</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#ff5e6d">
+      <div class="feature-icon" style="background:rgba(255,94,109,.12)">🚨</div>
+      <div class="feature-title">خدمات الطوارئ الفورية</div>
+      <div class="feature-desc">أرقام الطوارئ الرسمية بضغطة واحدة. خدمات قريبة (مشافي، شرطة، صيدليات). زر SOS يرسل موقعك.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">110 شرطة</span><span class="feature-tag">113 إسعاف</span><span class="feature-tag">SOS</span>
+      </div>
+    </div>
+    <div class="feature-card reveal" style="--accent:#00d4a0">
+      <div class="feature-icon" style="background:rgba(0,212,160,.12)">🔧</div>
+      <div class="feature-title">خبرات مهنية مجانية</div>
+      <div class="feature-desc">كهربائي، سبّاك، نجار، طبيب، محامٍ — يقدمون خدماتهم للمجتمع مجاناً. تبرع اختياري كشكر.</div>
+      <div class="feature-tags">
+        <span class="feature-tag">مجاني</span><span class="feature-tag">مجتمعي</span><span class="feature-tag">موثّق</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how">
+  <div class="how-layout">
+    <div class="reveal">
+      <div class="section-label">كيف يعمل</div>
+      <h2 class="section-title">ابدأ في <span>3 خطوات</span> فقط</h2>
+      <p class="section-desc" style="margin-bottom:36px">سجّل حسابك واستخدم جميع الخدمات خلال دقائق</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">سجّل حسابك</div>
+            <div class="step-desc">اختر نوع حسابك: شخصي، موظف، أو تجاري. أدخل بياناتك وهويتك الوطنية للتوثيق الكامل (KYC).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">اشحن محفظتك</div>
+            <div class="step-desc">أضف رصيداً عبر PayPal، حوالة بنكية، شام كاش، أو USDT. الشحن الأول بلا رسوم.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">استخدم كل الخدمات</div>
+            <div class="step-desc">حوّل، ادفع، استأجر، اطلب تكسي، ادفع الفواتير — كل شيء من شاشة واحدة.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="how-visual">
+        <div class="how-visual-title">📋 أنواع الحسابات</div>
+        <div class="how-item">
+          <div class="how-item-icon">👤</div>
+          <div class="how-item-text">
+            <strong>حساب شخصي</strong><br>
+            للاستخدام اليومي — تحويل، تكسي، فواتير، كوبون الخبز. مجاني للتسجيل.
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-item-icon">👷</div>
+          <div class="how-item-text">
+            <strong>حساب موظف</strong><br>
+            لموظفي الشركات — مرتبط برقم الموظف والشركة. حدود تحويل أعلى.
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-item-icon">🏢</div>
+          <div class="how-item-text">
+            <strong>حساب تجاري</strong><br>
+            للشركات والمحلات — سجل تجاري، فاتورة ضريبية، لوحة تحكم متقدمة.
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-item-icon">🎁</div>
+          <div class="how-item-text">
+            <strong>برنامج الإحالة</strong><br>
+            ادعُ أصدقاءك واربح عمولة من كل تحويل يقومون به — دخل سلبي حقيقي.
+          </div>
+        </div>
+        <div class="notice">
+          <div class="notice-icon">🎁</div>
+          <div class="notice-text">أول تحويل خارجي حقيقي <strong>مجاني تماماً</strong> — بدون أي رسوم على التحويل الأول هذا الشهر.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-label">جميع الخدمات</div>
+    <h2 class="section-title">أكثر من <span>20 خدمة</span> متكاملة</h2>
+    <p class="section-desc">من المدفوعات إلى التعليم إلى الطوارئ — هلال كاش يغطي كل جانب من حياتك.</p>
+  </div>
+  <div class="services-showcase reveal">
+    <div class="svc-card">
+      <div class="svc-card-icon">💸</div>
+      <div class="svc-card-title">تحويل الأموال</div>
+      <div class="svc-card-desc">داخلي مجاني، خارجي عبر PayPal وUST وبنك</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">0% داخلي</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🚖</div>
+      <div class="svc-card-title">خدمة التكسي</div>
+      <div class="svc-card-desc">6 أنواع مركبات — تكسي، ميني باص، نقل أثاث</div>
+      <div class="svc-card-badge" style="background:rgba(240,203,110,.12);color:var(--gold-light)">150 ل.س/رحلة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🏠</div>
+      <div class="svc-card-title">إيجار العقارات</div>
+      <div class="svc-card-desc">بيوت، شقق، محلات بعقود رقمية موثّقة</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">2% عمولة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🏨</div>
+      <div class="svc-card-title">حجز الفنادق</div>
+      <div class="svc-card-desc">من ⭐ إلى ⭐⭐⭐⭐⭐ في كل المحافظات السورية</div>
+      <div class="svc-card-badge" style="background:rgba(201,168,76,.12);color:var(--gold-light)">3% عمولة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🎉</div>
+      <div class="svc-card-title">صالات الأفراح</div>
+      <div class="svc-card-desc">احجز صالتك مع عقد رقمي وحماية كاملة</div>
+      <div class="svc-card-badge" style="background:rgba(255,94,109,.12);color:var(--red)">2.5% عمولة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🚗</div>
+      <div class="svc-card-title">إيجار السيارات</div>
+      <div class="svc-card-desc">عقد رسمي + تأمين محجوز + 6 صور إلزامية</div>
+      <div class="svc-card-badge" style="background:rgba(99,179,237,.12);color:#63b3ed">3% عمولة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">⚡</div>
+      <div class="svc-card-title">فاتورة الكهرباء</div>
+      <div class="svc-card-desc">جميع محافظات سوريا الـ13 — دفع فوري</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">بلا رسوم</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🌐</div>
+      <div class="svc-card-title">فاتورة الإنترنت</div>
+      <div class="svc-card-desc">STE, Tarassul, MTN, Syriatel</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">بلا رسوم</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">📱</div>
+      <div class="svc-card-title">شحن المحمول</div>
+      <div class="svc-card-desc">MTN وSyriatel — شحن وباقات إنترنت وفاتورة بوست</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">بلا رسوم</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🥖</div>
+      <div class="svc-card-title">كوبون الخبز الرقمي</div>
+      <div class="svc-card-desc">باركود يومي مرتبط بالهوية — مكافحة السوق السوداء</div>
+      <div class="svc-card-badge" style="background:rgba(201,168,76,.12);color:var(--gold-light)">حكومي مدعوم</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🚨</div>
+      <div class="svc-card-title">خدمات الطوارئ</div>
+      <div class="svc-card-desc">شرطة، إسعاف، إطفاء + زر SOS فوري</div>
+      <div class="svc-card-badge" style="background:rgba(255,68,102,.12);color:var(--red)">مجاني دائماً</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🔧</div>
+      <div class="svc-card-title">خبرات مهنية مجانية</div>
+      <div class="svc-card-desc">كهربائي، سبّاك، نجار، طبيب، محامٍ</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">مجتمعي مجاني</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🏋️</div>
+      <div class="svc-card-title">النوادي الرياضية</div>
+      <div class="svc-card-desc">صالات، ملاعب، سباحة، فنون قتالية — حجز رقمي</div>
+      <div class="svc-card-badge" style="background:rgba(255,94,109,.12);color:var(--red)">حجز فوري</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">📚</div>
+      <div class="svc-card-title">دروس خصوصية</div>
+      <div class="svc-card-desc">مدرسون معتمدون لكل المستويات — حضوري وأونلاين</div>
+      <div class="svc-card-badge" style="background:rgba(167,139,250,.12);color:#a78bfa">دفع عبر المحفظة</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🏫</div>
+      <div class="svc-card-title">دليل المعاهد</div>
+      <div class="svc-card-desc">معاهد لغات، تقنية، مدارس خاصة في 13 محافظة</div>
+      <div class="svc-card-badge" style="background:rgba(240,203,110,.12);color:var(--gold-light)">دليل شامل</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🛒</div>
+      <div class="svc-card-title">إعلانات البيع والشراء</div>
+      <div class="svc-card-desc">سيارات، عقارات، أثاث، إلكترونيات — بالصور</div>
+      <div class="svc-card-badge" style="background:rgba(251,146,60,.12);color:var(--o,#fb923c)">نشر مجاني</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">💼</div>
+      <div class="svc-card-title">سوق العمل</div>
+      <div class="svc-card-desc">وظائف وملفات باحثين عن عمل في سوريا</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">مجاني</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🤝</div>
+      <div class="svc-card-title">تداول P2P</div>
+      <div class="svc-card-desc">شراء وبيع USDT مباشرة بين المستخدمين</div>
+      <div class="svc-card-badge" style="background:rgba(167,139,250,.12);color:#a78bfa">USDT TRC20</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">🤖</div>
+      <div class="svc-card-title">مساعد ذكاء اصطناعي</div>
+      <div class="svc-card-desc">اسأله عن التحويلات، الخدمات، أسعار الصرف</div>
+      <div class="svc-card-badge" style="background:rgba(251,146,60,.12);color:#fb923c">24/7</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">📰</div>
+      <div class="svc-card-title">أخبار اقتصادية</div>
+      <div class="svc-card-desc">آخر أخبار الاقتصاد السوري والأسواق المالية</div>
+      <div class="svc-card-badge" style="background:rgba(0,212,160,.12);color:var(--cyan)">مباشر</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECURITY ══ -->
+<section id="security">
+  <div class="security-layout">
+    <div class="reveal">
+      <div class="section-label">الأمان والحماية</div>
+      <h2 class="section-title">أمانك <span>أولويتنا الأولى</span></h2>
+      <p class="section-desc">بنينا هلال كاش على أساس من الثقة والشفافية مع أعلى معايير الحماية الرقمية.</p>
+      <div class="security-points">
+        <div class="sec-point">
+          <div class="sec-point-icon">🔒</div>
+          <div>
+            <div class="sec-point-title">نظام Escrow للمدفوعات</div>
+            <div class="sec-point-desc">أي مبلغ يُحجز حتى تأكيد استلام الخدمة. في النزاعات يُرفع الأمر للمحكمة السورية المختصة.</div>
+          </div>
+        </div>
+        <div class="sec-point">
+          <div class="sec-point-icon">🪪</div>
+          <div>
+            <div class="sec-point-title">توثيق الهوية (KYC)</div>
+            <div class="sec-point-desc">كل مستخدم موثّق بهويته الوطنية. البيانات مشفّرة ومحمية وفق معايير دولية.</div>
+          </div>
+        </div>
+        <div class="sec-point">
+          <div class="sec-point-icon">🚗</div>
+          <div>
+            <div class="sec-point-title">تحقق أمني للتكسي</div>
+            <div class="sec-point-desc">قبل الركوب: تأكد من اللوحة، نوع السيارة، ولون السيارة. بدون تأكيد = مخالفة مالية.</div>
+          </div>
+        </div>
+        <div class="sec-point">
+          <div class="sec-point-icon">📸</div>
+          <div>
+            <div class="sec-point-title">توثيق إيجار السيارات</div>
+            <div class="sec-point-desc">6 صور إلزامية للسيارة قبل الاستلام + رقم العداد + عقد رقمي ملزم قانونياً.</div>
+          </div>
+        </div>
+        <div class="sec-point">
+          <div class="sec-point-icon">🥖</div>
+          <div>
+            <div class="sec-point-title">مكافحة السوق السوداء</div>
+            <div class="sec-point-desc">باركود الخبز مرتبط بالهوية ويُلغى بعد الاستخدام الأول يومياً. محاولة التلاعب تُسجَّل تلقائياً.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="security-visual">
+        <span class="sec-shield">🛡️</span>
+        <div style="font-family:'Cairo',sans-serif;font-size:1.2rem;font-weight:900;margin-bottom:8px">بنية أمنية متكاملة</div>
+        <div style="font-size:.82rem;color:var(--text2);line-height:1.8;margin-bottom:20px">كل معاملة محمية بطبقات متعددة من الحماية والتوثيق</div>
+        <div class="sec-stats-grid">
+          <div class="sec-stat">
+            <div class="sec-stat-num">256</div>
+            <div class="sec-stat-label">AES Encryption</div>
+          </div>
+          <div class="sec-stat">
+            <div class="sec-stat-num">2FA</div>
+            <div class="sec-stat-label">توثيق ثنائي</div>
+          </div>
+          <div class="sec-stat">
+            <div class="sec-stat-num">KYC</div>
+            <div class="sec-stat-label">توثيق الهوية</div>
+          </div>
+          <div class="sec-stat">
+            <div class="sec-stat-num">24/7</div>
+            <div class="sec-stat-label">مراقبة مستمرة</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;background:rgba(0,212,160,.07);border:1px solid rgba(0,212,160,.15);border-radius:12px;padding:14px;font-size:.78rem;color:var(--text2);line-height:1.7;text-align:right">
+          ⚖️ في حال أي نزاع مالي غير محلول بين الطرفين، يُحجز المبلغ كاملاً حتى صدور حكم من <strong>المحكمة السورية</strong> المختصة — هلال كاش يلتزم القانون السوري.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMMISSIONS ══ -->
+<section id="commissions">
+  <div class="comm-header reveal">
+    <div class="section-label">الأسعار والعمولات</div>
+    <h2 class="section-title">شفافية <span>كاملة</span> في الأسعار</h2>
+    <p class="section-desc">لا رسوم خفية — كل عمولة معلنة ومحسوبة تلقائياً قبل تأكيد أي معاملة.</p>
+  </div>
+  <div class="comm-grid reveal">
+    <div class="comm-card">
+      <div class="comm-icon">🔄</div>
+      <div class="comm-service">تحويل هلال ← هلال</div>
+      <div class="comm-rate">0%</div>
+      <div class="comm-unit">مجاني دائماً</div>
+      <div class="comm-desc">التحويل بين مستخدمي هلال كاش مجاني 100% وفوري</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">💳</div>
+      <div class="comm-service">تحويل PayPal</div>
+      <div class="comm-rate">3.5%</div>
+      <div class="comm-unit">من المبلغ</div>
+      <div class="comm-desc">وصول خلال 1-3 ساعات إلى حسابك في PayPal</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">🏦</div>
+      <div class="comm-service">تحويل بنكي</div>
+      <div class="comm-rate">1.5%</div>
+      <div class="comm-unit">من المبلغ</div>
+      <div class="comm-desc">وصول خلال 1-2 يوم عمل للحساب البنكي</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">₮</div>
+      <div class="comm-service">تحويل USDT</div>
+      <div class="comm-rate">0.5%</div>
+      <div class="comm-unit">من المبلغ</div>
+      <div class="comm-desc">شبكة TRC20 — وصول خلال 10 دقائق</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">🚖</div>
+      <div class="comm-service">التكسي</div>
+      <div class="comm-rate">150</div>
+      <div class="comm-unit">ل.س / رحلة</div>
+      <div class="comm-desc">عمولة ثابتة لكل رحلة مكتملة بغض النظر عن المسافة</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">🏠</div>
+      <div class="comm-service">إيجار عقارات</div>
+      <div class="comm-rate">2%</div>
+      <div class="comm-unit">من الإيجار</div>
+      <div class="comm-desc">تُخصم عند إتمام العقد فقط — لا رسوم على الإدراج</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">🚗</div>
+      <div class="comm-service">إيجار سيارات</div>
+      <div class="comm-rate">3%</div>
+      <div class="comm-unit">من الإيجار</div>
+      <div class="comm-desc">يشمل توثيق العقد وحفظ التأمين</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">🛍️</div>
+      <div class="comm-service">حماية المشتري</div>
+      <div class="comm-rate">5%</div>
+      <div class="comm-unit">محجوزة</div>
+      <div class="comm-desc">تُحجز 72 ساعة ثم تُفرج عند تأكيد الاستلام</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px" class="reveal">
+    <div style="background:rgba(0,212,160,.07);border:1px solid rgba(0,212,160,.15);border-radius:14px;padding:20px;display:inline-block;max-width:500px">
+      <div style="font-size:1rem;font-weight:800;color:var(--cyan);margin-bottom:8px">🎁 العرض الأول</div>
+      <div style="font-size:.85rem;color:var(--text2);line-height:1.7">أول تحويل خارجي حقيقي <strong>بدون رسوم</strong> هذا الشهر — بغض النظر عن طريقة التحويل أو المبلغ.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOWNLOAD ══ -->
+<section id="download">
+  <div class="section-label" style="display:block;text-align:center">التطبيق متاح الآن</div>
+  <h2 class="download-title reveal">حمّل هلال كاش<br><span style="color:var(--gold-light)">وابدأ مجاناً اليوم</span></h2>
+  <p class="download-desc reveal">متاح على جميع المنصات — مجاني للتحميل والتسجيل. ابدأ بمحفظتك في أقل من دقيقتين.</p>
+  <div class="download-btns reveal">
+    <a href="hilal-cash-v3.html" class="dl-btn" download>
+      <div class="dl-btn-icon">📱</div>
+      <div class="dl-btn-text">
+        <div class="dl-btn-sub">تحميل مباشر</div>
+        <div class="dl-btn-name">نسخة HTML</div>
+      </div>
+    </a>
+    <a href="#" class="dl-btn">
+      <div class="dl-btn-icon">🍎</div>
+      <div class="dl-btn-text">
+        <div class="dl-btn-sub">قريباً على</div>
+        <div class="dl-btn-name">App Store</div>
+      </div>
+    </a>
+    <a href="#" class="dl-btn">
+      <div class="dl-btn-icon">🤖</div>
+      <div class="dl-btn-text">
+        <div class="dl-btn-sub">قريباً على</div>
+        <div class="dl-btn-name">Google Play</div>
+      </div>
+    </a>
+  </div>
+  <div class="qr-wrap reveal">
+    <div class="qr-box">📲</div>
+    <div class="qr-label">امسح QR لفتح التطبيق</div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq" style="background:var(--bg2)">
+  <div class="faq-header reveal">
+    <div class="section-label" style="display:block;text-align:center">الأسئلة الشائعة</div>
+    <h2 class="section-title" style="text-align:center">كل ما تريد <span>معرفته</span></h2>
+  </div>
+  <div class="faq-layout">
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        هل هلال كاش مجاني؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">التسجيل والتحميل مجاني تماماً. التحويل الداخلي بين مستخدمي هلال كاش مجاني دائماً. الرسوم تُطبَّق فقط على التحويلات الخارجية (PayPal، بنك، USDT) وعمولات الخدمات كالتكسي والإيجارات.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ما العملات المدعومة؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">هلال كاش يدعم الليرة السورية (SYP)، الدولار الأمريكي (USD)، تيثر (USDT TRC20)، اليورو (EUR)، والريال السعودي (SAR). أسعار الصرف تُحدَّث يومياً.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        كيف تعمل حماية Escrow؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">عند شراء أي منتج أو خدمة، يُحجز 5% من قيمة الصفقة تلقائياً في هلال كاش. بعد استلام المنتج وتأكيدك، يُفرج عن المبلغ للبائع. إذا لم تؤكد خلال 72 ساعة يُعاد المبلغ تلقائياً. في حال النزاع يُرفع للمحكمة السورية.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ما الفرق بين أنواع الحسابات؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">الحساب الشخصي للاستخدام اليومي بحدود تحويل عادية. الحساب الوظيفي مرتبط برقم موظف وشركة ويمنح حدوداً أعلى. الحساب التجاري للشركات ويشمل فاتورة ضريبية ولوحة تحكم متقدمة وحدود تحويل غير محدودة.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        كيف يعمل كوبون الخبز الرقمي؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">كل مواطن مسجّل يحصل على باركود يومي مرتبط بهويته الوطنية. يُقدَّم هذا الباركود في الفرن الحكومي للحصول على حصته من الخبز المدعوم (حسب عدد أفراد الأسرة). الباركود يُلغى تلقائياً بعد الاستخدام الأول لمنع التكرار والسوق السوداء.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        هل التطبيق آمن لبياناتي الشخصية؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">نعم. كل البيانات مشفّرة بـ AES-256. نتبع معايير KYC الدولية لتوثيق الهوية. لا نشارك بياناتك مع أطراف ثالثة. في حال إغلاق حسابك، تُحذف البيانات خلال 3 أشهر.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        هل يمكنني الإيجار والبيع عبر التطبيق؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">بالتأكيد. يمكنك نشر عقارك للإيجار، سيارتك، صالة الأفراح، إعلانات البيع والشراء، أو حتى خدماتك المهنية. النشر مجاني والعمولة تُخصم فقط عند إتمام الصفقة.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ماذا يحدث في حادث تكسي أو حادث سيارة مستأجرة؟
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">في التكسي: هلال كاش توسّط بين السائق والراكب عبر نظام التقييم والغرامات. في إيجار السيارات: مبلغ التأمين المحجوز مسبقاً في التطبيق يُحجز حتى اتفاق الطرفين على التعويض أو صدور حكم من المحكمة السورية. هلال كاش غير مسؤول عن الحوادث — دورنا الحفظ المالي والوساطة.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--green-light));display:flex;align-items:center;justify-content:center;font-size:1.2rem">🌙</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:900;color:var(--gold-light)">هلال كاش</div>
+      </div>
+      <p class="footer-brand-desc">منصة الخدمات المالية والرقمية المتكاملة للمجتمع السوري. صُنعت بحب وإخلاص لتخدم أهلنا في الداخل والخارج.</p>
+      <div style="display:flex;gap:10px;margin-top:18px">
+        <div style="width:34px;height:34px;background:rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">📘</div>
+        <div style="width:34px;height:34px;background:rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">📷</div>
+        <div style="width:34px;height:34px;background:rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">💬</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">الخدمات</div>
+      <ul class="footer-links">
+        <li><a href="#services">التحويلات</a></li>
+        <li><a href="#services">التكسي</a></li>
+        <li><a href="#services">الإيجارات</a></li>
+        <li><a href="#services">الفنادق</a></li>
+        <li><a href="#services">الفواتير</a></li>
+        <li><a href="#services">كوبون الخبز</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">الشركة</div>
+      <ul class="footer-links">
+        <li><a href="#">عن هلال كاش</a></li>
+        <li><a href="#">فريق العمل</a></li>
+        <li><a href="#">شركاؤنا</a></li>
+        <li><a href="#">تواصل معنا</a></li>
+        <li><a href="#">وظائف لدينا</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">القانوني</div>
+      <ul class="footer-links">
+        <li><a href="#">شروط الاستخدام</a></li>
+        <li><a href="#">سياسة الخصوصية</a></li>
+        <li><a href="#">سياسة AML</a></li>
+        <li><a href="#">اتفاقية المستخدم</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2024 هلال كاش — جميع الحقوق محفوظة</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span>صُنع بـ ❤️ في سوريا</span>
+      <span class="footer-flag">🇸🇾</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+@keyframes marqueePhone{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// FAQ toggle
+function toggleFaq(el) {
+  const a = el.nextElementSibling;
+  const isOpen = a.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(x => x.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(x => x.classList.remove('open'));
+  if (!isOpen) { a.classList.add('open'); el.classList.add('open'); }
+}
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,.5)' : 'none';
+});
+
+// Stagger features
+document.querySelectorAll('.feature-card').forEach((c, i) => {
+  c.style.transitionDelay = (i * 0.05) + 's';
+});
+document.querySelectorAll('.svc-card').forEach((c, i) => {
+  c.style.transitionDelay = (i * 0.03) + 's';
+});
+</script>
+</body>
+</html>
